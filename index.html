@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CRM Field Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Reference maps and guides for cultural resource management practitioners. Developed and maintained by Kevin Gidusko, M.A., RPA.">
+<meta name="author" content="Kevin Gidusko, M.A., RPA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: survey-report header, then a two-column index of tool cards; live tools first, status as a tag on each card */
+:root {
+  --bg: #f7f6f2;
+  --panel: #ffffff;
+  --sunk: #efede6;
+  --fg: #1d1d1b;
+  --fg2: #55534d;
+  --muted: #7b786f;
+  --line: #dcd8cd;
+  --accent: #1f5fae;
+  --live: #17855f;
+  --live-bg: #e3f3ec;
+  --soon: #8a6a12;
+  --soon-bg: #f6efd9;
+  --focus: #1f5fae;
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141517; --panel: #1c1d20; --sunk: #232428; --fg: #eeede8; --fg2: #c2c0b8; --muted: #9a978e;
+    --line: #34363a; --accent: #7fb0ef; --live: #5fd3a5; --live-bg: #17322a; --soon: #e3bf5c; --soon-bg: #33291a;
+    --focus: #7fb0ef; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141517; --panel: #1c1d20; --sunk: #232428; --fg: #eeede8; --fg2: #c2c0b8; --muted: #9a978e;
+  --line: #34363a; --accent: #7fb0ef; --live: #5fd3a5; --live-bg: #17322a; --soon: #e3bf5c; --soon-bg: #33291a;
+  --focus: #7fb0ef; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 40px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+a { color: var(--accent); }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+header { display: flex; flex-direction: column; gap: 10px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--display); font-weight: 800; font-size: clamp(28px, 4.6vw, 44px); line-height: 1.06; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.lede { margin: 0; color: var(--fg2); font-size: 16px; max-width: 64ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--fg2); }
+.stamp { font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); background: var(--panel); padding: 2px 8px; border-radius: 4px; color: var(--fg); font-variant-numeric: tabular-nums; }
+
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+h2 { font-family: var(--display); font-weight: 700; font-size: 18px; margin: 0; letter-spacing: .01em; }
+.count { font-family: var(--mono); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.tool {
+  position: relative; display: flex; flex-direction: column; gap: 10px; min-width: 0;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 18px 18px 16px;
+}
+.tool.live { border-color: color-mix(in srgb, var(--live) 45%, var(--line)); }
+.tool.live:hover { border-color: var(--live); }
+.tool .top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.kind { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.status { font-family: var(--mono); font-size: 11px; font-weight: 500; letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
+.status.live { color: var(--live); background: var(--live-bg); }
+.status.soon { color: var(--soon); background: var(--soon-bg); }
+.tool h3 { font-family: var(--display); font-weight: 700; font-size: 19px; line-height: 1.2; margin: 0; text-wrap: balance; }
+.tool h3 a { color: inherit; text-decoration: none; }
+.tool h3 a::after { content: ""; position: absolute; inset: 0; border-radius: 8px; }
+.tool h3 a:focus-visible { outline: none; }
+.tool:has(h3 a:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+.tool p { margin: 0; color: var(--fg2); font-size: 14px; }
+.tool .foot { margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; align-items: center; gap: 10px; font-size: 13px; }
+.scope { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.go { font-weight: 600; color: var(--accent); white-space: nowrap; }
+.tool.soon .go { color: var(--muted); font-weight: 500; }
+
+.note { background: var(--sunk); border-radius: 8px; padding: 14px 16px; font-size: 13px; color: var(--fg2); max-width: 80ch; }
+.note strong { color: var(--fg); }
+
+footer { border-top: 1px solid var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--fg2); }
+footer .who { color: var(--fg); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) { .tool { transition: border-color .15s ease; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Cultural resource management · Reference tools</div>
+    <h1>CRM Field Kit</h1>
+    <p class="lede">Maps and quick references for archaeology and historic preservation compliance under Section 106 and state law, built from a working practitioner's notes. Each tool lives on its own page.</p>
+    <div class="meta"><span class="stamp">Updated Nov 2026</span></div>
+  </header>
+
+  <section aria-labelledby="tools-h">
+    <div class="section-head">
+      <h2 id="tools-h">Tools</h2>
+      <span class="count" id="tool-count"></span>
+    </div>
+    <ul class="grid" id="tools" style="margin-top:14px"></ul>
+  </section>
+
+  <div class="note"><strong>Use with care.</strong> These are reference aids, not legal advice. Statutes, SHPO guidance and permit rules change; confirm requirements with the State Historic Preservation Office, the lead federal agency, or counsel before relying on them for a project.</div>
+
+  <footer>
+    <span class="who">Developed and maintained by Kevin Gidusko, M.A., RPA</span>
+    <span>Corrections and suggestions: <a href="mailto:kagidusko@gmail.com">kagidusko@gmail.com</a></span>
+  </footer>
+</div>
+
+<script>
+// One entry per tool. To publish a tool: set status to "live" and add its url.
+const TOOLS = [
+  { name: "Archaeological Predictive Models Scan", kind: "Interactive map", scope: "50 states + federal",
+    desc: "Which states have archaeological predictive models or sensitivity standards, how they are used, and the federal programs that apply.",
+    status: "live", url: "https://kgidusko.github.io/predictive-models-map/" },
+  { name: "State Archaeological Permits Map", kind: "Interactive map", scope: "50 states",
+    desc: "An interactive U.S. map of state requirements for archaeological permits.",
+    status: "soon" },
+  { name: "Florida Highways History Map", kind: "Interactive map", scope: "Florida",
+    desc: "A historical map of Florida's highways for background research on transportation projects.",
+    status: "soon" },
+  { name: "Human Remains Law Reference", kind: "Reference table", scope: "59 jurisdictions",
+    desc: "Human remains and burial laws compared across 59 jurisdictions.",
+    status: "soon" },
+  { name: "GPR Cemetery Survey Reference", kind: "Field reference", scope: "Methods",
+    desc: "A reference for ground-penetrating radar survey of cemeteries and burials.",
+    status: "soon" },
+  { name: "GPR Buffer Distances by State", kind: "Reference table", scope: "50 states",
+    desc: "State-by-state buffer distances for GPR and ground disturbance near burials.",
+    status: "soon" },
+  { name: "NAGPRA and Florida Burial Law Primer", kind: "Primer", scope: "Federal + Florida",
+    desc: "A plain-language primer on NAGPRA and Florida burial law, including s. 872.05, F.S.",
+    status: "soon" }
+];
+
+const list = document.getElementById("tools");
+const order = t => (t.status === "live" ? 0 : 1);
+TOOLS.slice().sort((a, b) => order(a) - order(b)).forEach(t => {
+  const live = t.status === "live" && t.url;
+  const li = document.createElement("li");
+  li.className = "tool " + (live ? "live" : "soon");
+  const title = live
+    ? `<a href="${t.url}" target="_blank" rel="noopener">${t.name}</a>`
+    : t.name;
+  li.innerHTML = `
+    <div class="top"><span class="kind">${t.kind}</span>
+      <span class="status ${live ? "live" : "soon"}">${live ? "Live" : "Coming soon"}</span></div>
+    <h3>${title}</h3>
+    <p>${t.desc}</p>
+    <div class="foot"><span class="scope">${t.scope}</span>
+      <span class="go">${live ? "Open tool →" : "In progress"}</span></div>`;
+  list.appendChild(li);
+});
+const nLive = TOOLS.filter(t => t.status === "live" && t.url).length;
+document.getElementById("tool-count").textContent = `${nLive} live · ${TOOLS.length - nLive} in progress`;
+</script>
+</body>
+</html>
